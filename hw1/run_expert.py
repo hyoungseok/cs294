@@ -6,22 +6,23 @@ import gym
 import load_policy
 
 task_list = [
-    # "Hopper-v2",
+    "Hopper-v2",
     # "Ant-v2",
     # "HalfCheetah-v2",
-    # "Humanoid-v2",
+    "Humanoid-v2",
     # "Reacher-v2",
-    "Walker2d-v2"
+    # "Walker2d-v2"
 ]
 
 max_timesteps = 5000
-num_rollouts = 100
+num_rollouts = 200
 render = False
 
 
 def main():
 
     for task in task_list:
+        print(f"task : {task}")
         policy_fn = load_policy.load_policy(f"experts/{task}.pkl")
 
         with tf.Session():

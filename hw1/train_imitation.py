@@ -7,11 +7,11 @@ from sklearn.model_selection import train_test_split
 from imitaion_model import Net
 
 task_list = [
-    # "Hopper-v2",
-    # "Ant-v2",
-    # "HalfCheetah-v2",
-    # "Humanoid-v2",
-    # "Reacher-v2",
+    "Hopper-v2",
+    "Ant-v2",
+    "HalfCheetah-v2",
+    "Humanoid-v2",
+    "Reacher-v2",
     "Walker2d-v2"
 ]
 

@@ -4,11 +4,11 @@ import gym
 from imitaion_model import Net
 
 task_list = [
-    # "Hopper-v2",
-    # "Ant-v2",
-    # "HalfCheetah-v2",
-    # "Humanoid-v2",
-    # "Reacher-v2",
+    "Hopper-v2",
+    "Ant-v2",
+    "HalfCheetah-v2",
+    "Humanoid-v2",
+    "Reacher-v2",
     "Walker2d-v2"
 ]
 
@@ -20,7 +20,7 @@ render = False
 def main():
 
     for task in task_list:
-
+        print(f"task : {task}")
         conf_dict = {}
         with open(f"imitations/{task}.conf", "r", encoding="utf-8") as model_conf:
             for line in model_conf.readlines():

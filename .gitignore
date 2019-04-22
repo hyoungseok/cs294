@@ -89,3 +89,4 @@ ENV/
 .ropeproject
 
 hw1/.idea
+hw1/imitations/*.pth
