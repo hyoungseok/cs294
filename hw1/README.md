@@ -25,3 +25,26 @@ In `experts/`, the provided expert policies are:
 * Walker2d-v2.pkl
 
 The name of the pickle file corresponds to the name of the gym environment.
+
+## How to run
+
+### make directories
+```markdown
+mkdir experts_rollout
+mkdir imitations
+```
+
+### run experts
+```markdown
+python run_expert.py
+```
+
+### train imitation policy
+```markdown
+python train_imitation.py
+```
+
+### run imitation
+```markdown
+python run_imitation.py
+```

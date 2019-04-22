@@ -16,7 +16,7 @@ task_list = [
 ]
 
 batch_size = 1024
-epoch = 500
+epoch = 200
 test_rate = 0.2
 
 for task in task_list:
