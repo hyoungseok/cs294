@@ -12,7 +12,7 @@ task_list = [
     "HalfCheetah-v2",
     "Humanoid-v2",
     "Reacher-v2",
-    "Walker2d-v2"
+    "Walker2d-v2",
 ]
 
 batch_size = 1024
