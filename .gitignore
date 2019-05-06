@@ -89,5 +89,8 @@ ENV/
 .ropeproject
 
 hw1/.idea
+hw1/dagger/*.pth
+hw1/dagger_rollout/*.pkl
 hw1/experts_rollout/*.pkl
 hw1/imitations/*.pth
+hw1/imitations_obs/*.pkl

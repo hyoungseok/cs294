@@ -7,21 +7,22 @@ from sklearn.model_selection import train_test_split
 from imitaion_model import Net
 
 task_list = [
-    "Hopper-v2",
-    "Ant-v2",
-    "HalfCheetah-v2",
-    "Humanoid-v2",
+    # "Hopper-v2",
+    # "Ant-v2",
+    # "HalfCheetah-v2",
+    # "Humanoid-v2",
     "Reacher-v2",
-    "Walker2d-v2",
+    # "Walker2d-v2",
 ]
 
-batch_size = 1024
+batch_size = 256
 epoch = 200
 test_rate = 0.2
 
-for task in task_list:
+
+def train(task, rollout_path, train_type):
     print(f"task : {task}")
-    with open(f"experts_rollout/{task}.pkl", "rb") as f:
+    with open(f"{rollout_path}/{task}.pkl", "rb") as f:
         experts_data = pickle.loads(f.read())
         x_data = experts_data["observations"]
         y_data = []
@@ -61,7 +62,6 @@ for task in task_list:
         checkpoint = len(x_data) * test_rate
 
     for i in range(iterations):
-
         net.train()
         replacement = batch_size > len(x_train)
         batch_idx = np.random.choice(len(x_train), batch_size, replacement).astype(int)
@@ -89,8 +89,8 @@ for task in task_list:
 
     best_iterations = min(loss_history, key=lambda x: x[1])[0]
     print(f"best iterations : {best_iterations}")
-    for j in range(best_iterations):
 
+    for j in range(best_iterations):
         net.train()
         replacement = batch_size > len(x_data)
         batch_idx = np.random.choice(len(x_data), batch_size, replacement).astype(int)
@@ -112,7 +112,12 @@ for task in task_list:
         if (j + 1) % checkpoint == 0:
             print(f"{j + 1:6d} iter || train loss {train_loss.item():.5f}")
         if j + 1 == best_iterations:
-            torch.save(net.state_dict(), f"imitations/{task}.pth")
-            with open(f"imitations/{task}.conf", "w") as model_conf:
+            torch.save(net.state_dict(), f"{train_type}/{task}.pth")
+            with open(f"{train_type}/{task}.conf", "w") as model_conf:
                 model_conf.write(f"input_size={input_size}\nhidden_size={hidden_size}\noutput_size={output_size}")
             print(f"{task} model saved")
+
+
+if __name__ == "__main__":
+    for task_name in task_list:
+        train(task_name, "experts_rollout", "imitations")

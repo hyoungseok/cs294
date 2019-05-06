@@ -14,8 +14,7 @@ task_list = [
     "Walker2d-v2",
 ]
 
-max_timesteps = 5000
-num_rollouts = 200
+num_rollouts = 10
 render = False
 
 
@@ -29,7 +28,7 @@ def main():
             tf_util.initialize()
 
             env = gym.make(task)
-            max_steps = max_timesteps or env.spec.timestep_limit
+            max_steps = env.spec.timestep_limit
 
             returns = []
             observations = []
@@ -49,8 +48,6 @@ def main():
                     steps += 1
                     if render:
                         env.render()
-                    if steps % 100 == 0:
-                        print(f"{steps} / {max_steps}")
                     if steps >= max_steps:
                         break
                 returns.append(rewards)
